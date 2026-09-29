@@ -26,11 +26,11 @@
 
 ## 界面预览（汉化效果）
 
-![仪表盘 Dashboard（GPU 监控）](docs/screenshots/dashboard.png)
+![仪表盘 Dashboard（GPU 监控）](https://raw.githubusercontent.com/BUR9ERR/ai-toolkit-zh/main/docs/screenshots/dashboard.png)
 
-![新建训练任务 New Training Job（配置表单）](docs/screenshots/jobs_new.png)
+![新建训练任务 New Training Job（配置表单）](https://raw.githubusercontent.com/BUR9ERR/ai-toolkit-zh/main/docs/screenshots/jobs_new.png)
 
-![任务队列 Queue](docs/screenshots/jobs.png)
+![任务队列 Queue](https://raw.githubusercontent.com/BUR9ERR/ai-toolkit-zh/main/docs/screenshots/jobs.png)
 
 ## 常见问题
 
