@@ -1,0 +1,13 @@
+# 个人日志与临时文件
+*.log
+*.tmp
+
+# 本地数据库
+*.db
+*.db-shm
+*.db-wal
+
+# 本地依赖与虚拟环境
+.local-deps/
+.venv/
+__pycache__/
