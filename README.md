@@ -110,15 +110,7 @@ python -m manager launch    # 启动 UI，浏览器访问 http://localhost:8675
 >
 > `update_ai_toolkit.ps1`
 >
->  中仓库路径硬编码为 
->
-> `E:\ai-toolkit`
->
-> ，其他用户使用前请修改脚本顶部的 
->
-> `$repo`
->
->  为你本地的官方仓库路径。
+>  会自动以脚本所在目录作为仓库路径，请将脚本放在官方仓库根目录后运行。
 
 ## 汉化效果
 

@@ -15,7 +15,7 @@ param(
 $ErrorActionPreference = "Continue"
 try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
 
-$repo = "E:\ai-toolkit"
+$repo = Split-Path -Parent $MyInvocation.MyCommand.Path
 $venvPy = Join-Path $repo ".venv\Scripts\python.exe"
 $port = 8675
 Set-Location $repo
@@ -44,12 +44,12 @@ Write-Host "本地版本 : $localVersion"
 
 # ===== 1) 从 GitHub 获取最新信息 =====
 Write-Host ""
-Write-Host "正在连接 GitHub 获取最新版本信息（需代理 127.0.0.1:7897 可用）..."
+Write-Host "正在连接 GitHub 获取最新版本信息（请确保网络/代理可用）..."
 git fetch origin 2>&1 | Out-Host
 if ($LASTEXITCODE -ne 0) {
     Err "连接 GitHub 失败。请确认："
-    Write-Host "  1. Clash/代理软件已开启（监听 127.0.0.1:7897）"
-    Write-Host "  2. 代理已配置： git config --global http.https://github.com.proxy http://127.0.0.1:7897"
+    Write-Host "  1. 代理软件已开启并监听本地端口"
+    Write-Host "  2. 代理已配置： git config --global http.https://github.com.proxy http://127.0.0.1:<代理端口>"
     Write-Host "  3. 网络通畅后重新运行本脚本"
     exit 1
 }
@@ -70,7 +70,7 @@ $trackedDirty = @($porcelain | Where-Object { $_ -notmatch '^\?\?' })
 
 # ===== 2) 显示版本对比 =====
 Step "版本对比"
-Write-Host ("  项目  : 本地 (E:\ai-toolkit)          GitHub (ostris/ai-toolkit)")
+Write-Host ("  项目  : 本地 ($repo)          GitHub (ostris/ai-toolkit)")
 Write-Host ("  版本  : {0,-14}         {1}" -f $localVersion, $remoteVersion)
 Write-Host ("  Commit: {0,-14}         {1}" -f $localCommit, $remoteCommit)
 if ($lInfo.Count -ge 2 -and $rInfo.Count -ge 2) {
@@ -178,6 +178,6 @@ $newVer = Get-VersionFromPy ((Get-Content "$repo\version.py" -Raw -ErrorAction S
 Step "更新完成"
 Write-Host "  新版本 : $newVer"
 Write-Host "  新 commit: $newCommit"
-Write-Host "  启动 UI:  cd E:\ai-toolkit  &&  python -m manager launch"
+Write-Host "  启动 UI:  cd $repo  &&  python -m manager launch"
 Write-Host "  浏览器 :  http://localhost:$port"
 Write-Host ""
